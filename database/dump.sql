@@ -274,7 +274,6 @@ COPY public.partners ("partnerId", "userId", date, city, state, name, note, "cre
 --
 
 COPY public.users ("userId", "firstName", "lastName", email, password, "createdAt") FROM stdin;
-5	Scott	Brett	scott@brett.com	password	2020-09-22 01:12:58.066098+00
 \.
 
 
@@ -305,21 +304,21 @@ SELECT pg_catalog.setval('public."diseases_diseaseId_seq"', 7, true);
 -- Name: partners_partnerId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."partners_partnerId_seq"', 12, true);
+SELECT pg_catalog.setval('public."partners_partnerId_seq"', 16, true);
 
 
 --
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 6, true);
+SELECT pg_catalog.setval('public."users_userId_seq"', 25, true);
 
 
 --
 -- Name: visits_visitId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."visits_visitId_seq"', 18, true);
+SELECT pg_catalog.setval('public."visits_visitId_seq"', 31, true);
 
 
 --

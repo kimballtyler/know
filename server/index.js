@@ -272,6 +272,7 @@ app.delete('/api/visits/:visitId', (req, res, next) => {
 });
 
 app.get('/api/partners', (req, res, next) => {
+  const userId = req.session.userId;
   const sql = `
     select
       "partnerId",
@@ -280,9 +281,11 @@ app.get('/api/partners', (req, res, next) => {
       "state",
       "name"
       from "partners"
+      where "userId" = $1
       order by "date" desc;
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       return res.status(200).json(result.rows);
     })
@@ -337,7 +340,7 @@ app.get('/api/partners/:partnerId', (req, res, next) => {
       "name",
       "note"
     from "partners"
-   where "partnerId" = $1;
+    where "partnerId" = $1;
   `;
   const params = [partnerId];
   db.query(sql, params)
@@ -404,20 +407,7 @@ app.get('/api/login', (req, res, next) => {
 });
 
 app.get('/api/logout', (req, res, next) => {
-  const userId = req.session.userId;
-  const sql = `
-    delete from "users"
-      where "userId" = $1
-      returning *;
-  `;
-  const params = [userId];
-  db.query(sql, params)
-    .then(result => {
-      delete req.session.userId;
-      res.status(200).json({
-        message: 'fake user deleted and logged out.'
-      });
-    });
+  delete req.session.userId;
 });
 
 app.use('/api', (req, res, next) => {
