@@ -32,7 +32,7 @@ Try the application live at: https://know.tylerkimball.com
 
 ## Preview
 
-![Know](server/public/images/know-demo.gif)
+![Know Gif](server/public/images/know-demo.gif)
 
 ## Development
 
