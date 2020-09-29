@@ -20,19 +20,15 @@ Try the application live at: https://know.tylerkimball.com
 - AWS EC2
 
 ## Features
-* User can login with username
-* User can view search page
-* User can search for posts based on location
-* User can view specific posts
-* User can place a bid on a post
-* User can send a private message to seller
-* User can see list of all private messages
-* User can create a new post
-* User can edit an existing post
-* User can add a post to their bids list
-* User can add a post to their watch-list
-* User can view profile
-* User can edit profile
+* User can add a new test entry
+* User can include the date they were tested, what city/state they were tested in, the tests they received, and the results of each test in a test entry
+* User can view all testing entries
+* User can add a sexual partner/encounter
+* User can view all sexual partners/encounters
+* User can search for locations to get tested
+* User can create an account
+* User can login to their account
+
 
 ## Preview
 
@@ -50,8 +46,8 @@ Try the application live at: https://know.tylerkimball.com
 
 1. Clone the repository:
     ```shell
-    git clone https://github.com/felix-chin/crime-watch
-    cd crime-watch
+    git clone https://github.com/kimballtyler/know.git
+    cd know
     ```
 2. Install npm dependencies:
     ```shell
