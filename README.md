@@ -21,7 +21,7 @@ Try the application live at: https://know.tylerkimball.com
 
 ## Features
 * User can add a new test entry
-* User can include the date they were tested, what city/state they were tested in, the tests they received, and the results of each test in a test entry
+* User can include the date, city/state, tests received, and results of each test in a test entry
 * User can view all testing entries
 * User can add a sexual partner/encounter
 * User can view all sexual partners/encounters
