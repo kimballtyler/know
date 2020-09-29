@@ -19,9 +19,8 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
-const userId = 5;
-
 app.get('/api/visits', (req, res, next) => {
+  const userId = req.session.userId;
   const sql = `
     select
       "visits"."visitId",
@@ -53,6 +52,7 @@ app.get('/api/visits', (req, res, next) => {
 });
 
 app.get('/api/visits/:visitId', (req, res, next) => {
+  const userId = req.session.userId;
   const visitId = parseFloat(req.params.visitId);
   if (!Number.isInteger(visitId) || visitId <= 0) {
     return res.status(400).json({
@@ -111,6 +111,7 @@ app.get('/api/visits/:visitId', (req, res, next) => {
 });
 
 app.post('/api/visits', (req, res, next) => {
+  const userId = req.session.userId;
   const body = req.body;
   if (Object.keys(body).length === 0) {
     res.status(400).json({
@@ -294,6 +295,7 @@ app.get('/api/partners', (req, res, next) => {
 });
 
 app.post('/api/partners', (req, res, next) => {
+  const userId = req.session.userId;
   const body = req.body;
   if (body.date && body.name) {
     const sql = `
@@ -382,6 +384,38 @@ app.delete('/api/partners/:partnerId', (req, res, next) => {
       console.error(err);
       res.status(500).json({
         error: 'An unexpected error occurred.'
+      });
+    });
+});
+
+app.get('/api/login', (req, res, next) => {
+  const sql = `
+    insert into "users" ("firstName", "lastName", "email", "password")
+      values ('fake', 'fake', 'fake', 'fake')
+      returning *;
+  `;
+  db.query(sql)
+    .then(result => {
+      req.session.userId = result.rows[0].userId;
+      res.status(200).json({
+        message: 'fake user created.'
+      });
+    });
+});
+
+app.get('/api/logout', (req, res, next) => {
+  const userId = req.session.userId;
+  const sql = `
+    delete from "users"
+      where "userId" = $1
+      returning *;
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      delete req.session.userId;
+      res.status(200).json({
+        message: 'fake user deleted and logged out.'
       });
     });
 });
