@@ -14,7 +14,9 @@ class VisitList extends React.Component {
 
   getVisits() {
     fetch('/api/visits')
-      .then(response => response.json())
+      .then(response => {
+        response.json();
+      })
       .then(data => this.setState({ visits: data }));
   }
 

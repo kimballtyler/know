@@ -10,7 +10,7 @@ class VisitForm extends React.Component {
       city: '',
       date: '',
       diseases: [
-        { chlamydia: null },
+        { chlamydia: 'Positive' },
         { gonorrhea: null },
         { hepatitis: null },
         { herpes: null },
